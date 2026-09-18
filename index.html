@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>comp.estimate — AI &amp; DS salary predictor</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">&gt;_</span>
+    <div>
+      <div class="brand-name">comp.estimate</div>
+      <div class="brand-sub">AI &amp; DS salary model</div>
+    </div>
+  </div>
+  <div class="status" id="apiStatus">
+    <span class="dot" id="apiDot"></span>
+    <span id="apiStatusText">checking backend…</span>
+  </div>
+</header>
+
+<main class="layout">
+
+  <form id="predictForm" class="panel" autocomplete="off">
+
+    <!-- ROLE -->
+    <section class="group">
+      <div class="group-head"><span class="group-tag">01</span> role</div>
+      <div class="grid grid-2">
+
+        <div class="field">
+          <label for="job_title">job_title</label>
+          <select id="job_title" name="job_title" required>
+            <option>Data Analyst</option>
+            <option>Research Scientist</option>
+            <option selected>Machine Learning Engineer</option>
+            <option>Data Engineer</option>
+            <option>Analytics Engineer</option>
+            <option>Business Intelligence Analyst</option>
+            <option>Data Science Manager</option>
+            <option>Computer Vision Engineer</option>
+            <option>LLM Engineer</option>
+            <option>Data Scientist</option>
+            <option>AI Engineer</option>
+            <option>MLOps Engineer</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="experience_level">experience_level</label>
+          <select id="experience_level" name="experience_level" required>
+            <option>Entry</option>
+            <option selected>Mid</option>
+            <option>Senior</option>
+            <option>Lead</option>
+            <option>Executive</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="employment_type">employment_type</label>
+          <select id="employment_type" name="employment_type" required>
+            <option selected>Full-time</option>
+            <option>Part-time</option>
+            <option>Contract</option>
+            <option>Freelance</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="education_level">education_level</label>
+          <select id="education_level" name="education_level" required>
+            <option>Bachelors</option>
+            <option selected>Masters</option>
+            <option>Bootcamp</option>
+            <option>Self-taught</option>
+            <option>PhD</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="primary_language">primary_language</label>
+          <select id="primary_language" name="primary_language" required>
+            <option selected>Python</option>
+            <option>SQL</option>
+            <option>Java</option>
+            <option>R</option>
+            <option>Julia</option>
+            <option>Scala</option>
+            <option>Rust</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="years_experience">years_experience <span class="unit" id="years_experience_out">6</span></label>
+          <input type="range" id="years_experience" name="years_experience" min="0" max="24" step="1" value="6" />
+        </div>
+
+      </div>
+
+      <div class="grid grid-2 toggles">
+        <label class="toggle">
+          <input type="checkbox" id="has_ml_in_title" name="has_ml_in_title" />
+          <span class="switch"></span>
+          <span class="toggle-label">has_ml_in_title</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="manages_people" name="manages_people" />
+          <span class="switch"></span>
+          <span class="toggle-label">manages_people</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- COMPANY -->
+    <section class="group">
+      <div class="group-head"><span class="group-tag">02</span> company</div>
+      <div class="grid grid-2">
+
+        <div class="field">
+          <label for="company_size">company_size</label>
+          <select id="company_size" name="company_size" required>
+            <option>S</option>
+            <option selected>M</option>
+            <option>L</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="industry">industry</label>
+          <select id="industry" name="industry" required>
+            <option selected>Technology</option>
+            <option>Finance</option>
+            <option>Retail</option>
+            <option>Government</option>
+            <option>Education</option>
+            <option>Healthcare</option>
+            <option>Consulting</option>
+            <option>Media</option>
+            <option>Manufacturing</option>
+            <option>Energy</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="company_location">company_location</label>
+          <select id="company_location" name="company_location" required>
+            <option selected>US</option>
+            <option>IN</option>
+            <option>BR</option>
+            <option>SG</option>
+            <option>AU</option>
+            <option>GB</option>
+            <option>FR</option>
+            <option>DE</option>
+            <option>PL</option>
+            <option>NL</option>
+            <option>CA</option>
+            <option>ES</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="employee_residence">employee_residence</label>
+          <select id="employee_residence" name="employee_residence" required>
+            <option selected>US</option>
+            <option>AU</option>
+            <option>IN</option>
+            <option>SG</option>
+            <option>GB</option>
+            <option>DE</option>
+            <option>FR</option>
+            <option>PL</option>
+            <option>NL</option>
+            <option>BR</option>
+            <option>CA</option>
+            <option>ES</option>
+          </select>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COMPENSATION -->
+    <section class="group">
+      <div class="group-head"><span class="group-tag">03</span> compensation</div>
+      <div class="grid grid-2">
+
+        <div class="field">
+          <label for="salary_currency">salary_currency</label>
+          <select id="salary_currency" name="salary_currency" required>
+            <option selected>USD</option>
+            <option>INR</option>
+            <option>BRL</option>
+            <option>SGD</option>
+            <option>AUD</option>
+            <option>GBP</option>
+            <option>EUR</option>
+            <option>PLN</option>
+            <option>CAD</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="weekly_hours">weekly_hours <span class="unit" id="weekly_hours_out">40</span></label>
+          <input type="range" id="weekly_hours" name="weekly_hours" min="24" max="67" step="1" value="40" />
+        </div>
+
+        <div class="field">
+          <label for="bonus_pct">bonus_pct <span class="unit" id="bonus_pct_out">10</span></label>
+          <input type="range" id="bonus_pct" name="bonus_pct" min="0" max="30" step="1" value="10" />
+        </div>
+
+        <div class="field">
+          <label for="equity_offered_pct">equity_offered_pct</label>
+          <input type="number" id="equity_offered_pct" name="equity_offered_pct" min="0" max="1.3" step="0.01" value="0.10" required />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PERFORMANCE & OUTLOOK -->
+    <section class="group">
+      <div class="group-head"><span class="group-tag">04</span> performance &amp; outlook</div>
+      <div class="grid grid-2">
+
+        <div class="field">
+          <label for="certifications_count">certifications_count <span class="unit" id="certifications_count_out">2</span></label>
+          <input type="range" id="certifications_count" name="certifications_count" min="0" max="9" step="1" value="2" />
+        </div>
+
+        <div class="field">
+          <label for="interviews_to_offer">interviews_to_offer <span class="unit" id="interviews_to_offer_out">4</span></label>
+          <input type="range" id="interviews_to_offer" name="interviews_to_offer" min="1" max="16" step="1" value="4" />
+        </div>
+
+        <div class="field">
+          <label for="job_satisfaction_score">job_satisfaction_score</label>
+          <input type="number" id="job_satisfaction_score" name="job_satisfaction_score" min="1.1" max="24" step="0.1" value="7.5" required />
+        </div>
+
+        <div class="field">
+          <label for="fears_ai_automation_score">fears_ai_automation_score <span class="unit" id="fears_ai_automation_score_out">5</span></label>
+          <input type="range" id="fears_ai_automation_score" name="fears_ai_automation_score" min="1" max="10" step="1" value="5" />
+        </div>
+
+      </div>
+
+      <div class="grid grid-2 toggles">
+        <label class="toggle">
+          <input type="checkbox" id="uses_ai_tools_daily" name="uses_ai_tools_daily" checked />
+          <span class="switch"></span>
+          <span class="toggle-label">uses_ai_tools_daily</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="switched_jobs_last_year" name="switched_jobs_last_year" />
+          <span class="switch"></span>
+          <span class="toggle-label">switched_jobs_last_year</span>
+        </label>
+      </div>
+    </section>
+
+    <div class="submit-row">
+      <button type="submit" id="submitBtn" class="run-btn">
+        <span>run estimate</span>
+      </button>
+      <div class="error-msg" id="errorMsg" role="alert"></div>
+    </div>
+
+  </form>
+
+  <aside class="panel result-panel">
+    <div class="group-head"><span class="group-tag">05</span> output</div>
+
+    <div class="result-card" id="resultCard">
+      <div class="result-label">predicted_salary_usd</div>
+      <div class="result-value" id="resultValue">—</div>
+      <div class="result-hint" id="resultHint">fill in the form and run an estimate</div>
+    </div>
+
+    <div class="endpoint-note">
+      <div class="endpoint-row"><span>POST</span><code>/predict</code></div>
+      <div class="endpoint-row"><span>GET</span><code>/</code></div>
+      <div class="endpoint-host" id="endpointHost">http://127.0.0.1:8000</div>
+    </div>
+  </aside>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
