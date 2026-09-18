@@ -1,4 +1,4 @@
-const API_BASE = "https://ai-ds-salary-prediction-1.onrender.com/";
+const API_BASE = "https://ai-ds-salary-prediction-1.onrender.com";
 
 const form = document.getElementById("predictForm");
 const submitBtn = document.getElementById("submitBtn");
